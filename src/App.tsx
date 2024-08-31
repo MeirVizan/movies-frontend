@@ -1,24 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './Components/Navbar';
+import Movies from './Pages/Movies';
+import MovieDetails from './Pages/MovieDetails';
+import TvShows from './Pages/TvShows';
+import TvShowDetails from './Pages/TvShowDetails';
+import SignIn from './Pages/SignIn';
+import SignUp from './Pages/SignUp';
+import ProtectedRoute from './Components/ProtectedRoute';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Movies />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/movies/movieDetails/:id" element={<MovieDetails />} />
+            <Route path="/tvshows" element={<TvShows />} />
+            <Route path="/tvshows/tvShowDetails/:id" element={<TvShowDetails />} />
+          </Route>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+
+          <Route path="*" element={<h1>Not Found</h1>} />
+        </Routes>
+      </Router>
+
     </div>
   );
 }
