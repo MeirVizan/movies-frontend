@@ -4,6 +4,9 @@ import { useDispatch } from 'react-redux';
 import { useSignInMutation } from '../services/authApi';
 import { signIn as signInAction } from '../features/user/userSlice';
 import { useNavigate } from 'react-router';
+import './Pages.css'
+import { Link } from 'react-router-dom';
+
 
 const SignIn: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -13,11 +16,13 @@ const SignIn: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleSignIn = async () => {
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
+      console.log('handleSignIn :>> ');
       const response = await signIn({ email, password }).unwrap();
-      dispatch(signInAction({ email: response.email, token: response.token }));
-      localStorage.setItem('token', response.token); // Store the token
+      dispatch(signInAction({ email: email, token: response.token }));
+      console.log(' succed massge', response)
       navigate('/');
 
     } catch (error) {
@@ -26,36 +31,32 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ mt: 8 }}>
-        <Typography variant="h4" gutterBottom>Sign In</Typography>
-        <TextField
-          fullWidth
-          label="Email"
-          margin="normal"
+    
+
+    <div className="login-card">
+      <h2>Sign In</h2>
+      <form onSubmit={handleSignIn}>
+        <input
+          type="text"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <TextField
-          fullWidth
-          label="Password"
+        <input
           type="password"
-          margin="normal"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          fullWidth
-          onClick={handleSignIn}
-          sx={{ mt: 3 }}
-          disabled={isLoading}
+        <button
+          type="submit"
         >
           {isLoading ? 'Signing In...' : 'Sign In'}
-        </Button>
-      </Box>
-    </Container>
+        </button>
+        <p>To create account</p> 
+        <Link  to='/signup' >click here</Link>
+      </form>
+    </div>
   );
 };
 

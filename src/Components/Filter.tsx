@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { AccordionGroup } from '@mui/joy';
-import { Accordion, AccordionDetails, AccordionSummary, Button } from '@mui/material';
+import {Accordion, AccordionSummary, AccordionDetails} from '@mui/joy';
+import {  Button } from '@mui/material';
 import MultiSelect from './MultiSelect';
 import { useFetchFilterMoviesQuery, useFetchGenresQuery } from '../services/moviesApi';
 import { FetchMoviesResponse, FetchTvShowsResponse, Genre } from '../Models/Model';
@@ -37,9 +38,9 @@ export const Filter = () => {
 
     const [myStateTv, setStateTv] = useState<any>(skipToken) // initialize with skipToken to skip at first
     const { data: filteredTvData } = useFetchFilterTvShowsQuery(myStateTv);
-    console.log('filteredTvData :>> ', filteredTvData);
+    // console.log('filteredTvData :>> ', filteredTvData);
 
-    console.log('filteredMoviesData :>> ', filteredMoviesData);
+    // console.log('filteredMoviesData :>> ', filteredMoviesData);
 
     useEffect(() => {
         if (filteredMoviesData) {
@@ -80,7 +81,8 @@ export const Filter = () => {
                 border: '1px solid #e3e3e3',
                 borderRadius: '8px',
                 overflow: 'hidden',
-                margin: '30px 50px'
+                margin: '30px 50px',
+                backgroundColor: '#fff'
             }}
         >
             <Accordion>

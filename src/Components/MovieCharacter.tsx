@@ -1,6 +1,5 @@
 import React from 'react'
 import { useFetchCharactersQuery } from '../services/moviesApi';
-import { setMovieCharacters } from '../features/movies/moviesSlice';
 import { Character } from '../Models/Model';
 import { useFetchTvShowsCharactersQuery } from '../services/tvShowsApi';
 

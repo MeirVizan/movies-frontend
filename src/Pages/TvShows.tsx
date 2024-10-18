@@ -67,10 +67,12 @@ const TvShows: React.FC = () => {
                             )
                         }
                     </div>
-                    <div style={{ textAlign: 'center' }}>
+                    <button className='loadmore-btn' onClick={handelPage} >Load More</button>
+
+                    {/* <div style={{ textAlign: 'center' }}>
 
                         <button onClick={handelPage} >Load More</button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

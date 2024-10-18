@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import { Select, SelectChangeEvent } from '@mui/material';
-import Accordion from '@mui/joy/Accordion';
-import AccordionDetails from '@mui/joy/AccordionDetails';
-import AccordionSummary from '@mui/joy/AccordionSummary';
+import {Accordion, AccordionSummary, AccordionDetails} from '@mui/joy';
 import { AccordionGroup } from '@mui/joy';
 import { useDispatch } from 'react-redux';
 import { useFetchSortedMoviesQuery } from '../services/moviesApi';
@@ -81,7 +79,9 @@ const Sort = () => {
                 border: '1px solid #e3e3e3',
                 borderRadius: '8px',
                 overflow: 'hidden',
-                margin: '30px 50px'
+                margin: '30px 50px',
+                backgroundColor: 'white',
+                color: '#638fc2'
             }}
         >
             <Accordion>

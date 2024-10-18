@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useSignUpMutation } from '../services/authApi';
 import { signIn } from '../features/user/userSlice';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const SignUp: React.FC = () => {
     const [username, setUsername] = useState('');
@@ -14,11 +14,11 @@ const SignUp: React.FC = () => {
     const navigate = useNavigate(); // Initialize useNavigate
 
 
-    const handleSignUp = async () => {
+    const handleSignUp = async (e: React.FormEvent) => {
+        e.preventDefault();
         try {
             const response = await signUp({ "name": username, "email": email, "password": password }).unwrap();
-            dispatch(signIn({ email: response.email, token: response.token }));
-            localStorage.setItem('token', response.token); // Store the token
+            dispatch(signIn({ email: email, token: response.token }));
             console.log(' succed massge', response)
             navigate('/');
             // Store the token, handle redirection, etc.
@@ -28,43 +28,39 @@ const SignUp: React.FC = () => {
     };
 
     return (
-        <Container maxWidth="sm">
-            <Box sx={{ mt: 8 }}>
-                <Typography variant="h4" gutterBottom>Sign Up</Typography>
-                <TextField
-                    fullWidth
-                    label="Username"
-                    margin="normal"
+
+        <div className="login-card">
+            <h2>Sign Up</h2>
+            <form onSubmit={handleSignUp}>
+                <input
+                    type="text"
+                    placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <TextField
-                    fullWidth
-                    label="Email"
-                    margin="normal"
+                <input
+                    type="text"
+                    placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <TextField
-                    fullWidth
-                    label="Password"
+                <input
                     type="password"
-                    margin="normal"
+                    placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    onClick={handleSignUp}
-                    sx={{ mt: 3 }}
+                <button
+                    type="submit"
                     disabled={isLoading}
                 >
                     {isLoading ? 'Signing Up...' : 'Sign Up'}
-                </Button>
-            </Box>
-        </Container>
+                </button>
+
+                <p>Already have a account</p>
+                <Link to='/signin' >click here</Link>
+            </form>
+        </div>
     );
 };
 

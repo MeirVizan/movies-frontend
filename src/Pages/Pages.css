@@ -1,51 +1,193 @@
 .autocomplete {
-    position: relative;
-  
-  }
-  
-  .autocomplete-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  
-  
-  input:focus {
-    outline: none;
-  }
-  
-  img {
-    height: 150px;
-  }
-  
-  
-  .suggestions-list {
-    position: absolute;
-    z-index: 1;
-    /* width: 100%; */
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 5px 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-height: 80vh;
-    overflow-y: auto;
-  
-  }
-  
-  .suggestion {
-    padding: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .suggestion:hover {
-    background-color: #f0f0f0;
-  }
+  position: relative;
+
+}
+
+.autocomplete-input {
+  width: 1350px;
+  height: 40px;
+  font-size: 16px;
+  border: 0px;
+}
+
+.loadmore-btn {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: 16px;
+  margin: auto;
+  height: 40px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #1d4261;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 10px;
+  /* margin: 15px 0px; */
+}
+
+.loadmore-btn:active {
+  background-color: #002a48;
+}
+
+
+
+input:focus {
+  outline: none;
+}
+
+img {
+  height: 150px;
+}
+
+
+.suggestions-list {
+  position: absolute;
+  top: 60px;
+  z-index: 1;
+  width: 90%;
+  max-height: 350px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background-color: #fff;
+  /* border: 1px solid #ccc; */
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+
+}
+
+.suggestion {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: start;
+}
+
+.suggestion:hover {
+  background-color: #f0f0f0;
+}
+
+
+.login-card {
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  /* Border for the card */
+  border-radius: 10px;
+  /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Shadow effect */
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Input fields styling */
+.login-card input[type="text"],
+.login-card input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Submit button styling */
+.login-card button {
+  width: 100%;
+  padding: 10px;
+  background-color: #7da4be;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-card button:hover {
+  background-color: #3a83b5;
+  /* Slightly darker on hover */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1350px;
+  margin: auto;
+  overflow: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.slider {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+}
+
+.slider__content {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100%;
+  margin-right: 20px;
+}
+
+.slider__content__title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.slider__content__text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.custom-scrollbar {
+  display: flex;
+  height: 370px;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+/* Style for the entire scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  /* Set the height of the scrollbar */
+}
+
+/* Style for the scrollbar track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+  /* Make the track transparent */
+  border-radius: 10px;
+}
+
+/* Style for the scrollbar handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d3d3d3;
+  /* Light gray color for the scrollbar handle */
+  border-radius: 10px;
+  /* Rounded edges */
+}
+
+/* Hover state for the scrollbar handle */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
+  /* Slightly darker gray when hovered */
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none; /* Hides the scrollbar arrows/buttons */
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { MovieInterface } from '../Models/Model';
+import RatingCircle from './RatingCircle';
 
 
 interface MovieProps {
@@ -21,13 +22,13 @@ const Movie = ({ movie, index }: MovieProps) => {
             boxShadow: '0 2px 8px rgba(0,0,0,.1)',
             // flexgrow: 3
         }}>
-            <Link to={`/movies/movieDetails/${movie.id}`}>
+            <Link style={{textDecoration: 'none'}} to={`/movies/movieDetails/${movie.id}`}>
                 <img style={{
-                    width: '180px',
+                    width: '100%',
                     height: '270px'
 
                 }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt='' />
-                <div style={{
+                {/* <div style={{
                     display: 'flex',
                     border: '1px solid black',
                     color: 'white',
@@ -39,9 +40,10 @@ const Movie = ({ movie, index }: MovieProps) => {
                     margin: '-20px 10px 15px 10px'
                 }}
 
-                ><p style={{ margin: 'auto' }}>{movie.vote_average.toFixed(1) * 10}</p></div>
+                ><p style={{ margin: 'auto' }}>{movie.vote_average.toFixed(1) * 10}</p></div> */}
+                <RatingCircle vote_average={movie.vote_average} />
                 <div style={{
-                    margin: '10px 10px', width: '180px', textDecoration: 'none',
+                    margin: '10px 10px', width: '180px', textDecoration: 'none',color: '#1d4261'
                 }}><b>{movie.title}</b></div>
             </Link>
             <div style={{ margin: '10px 10px' }}>{movie.release_date}</div>

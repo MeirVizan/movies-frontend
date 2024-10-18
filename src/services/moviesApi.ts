@@ -36,7 +36,7 @@ export const moviesApi = createApi({
             query: (page) => `/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`,
             transformResponse: (response: FetchMoviesResponse) => {
                 // const dispatch = useDispatch();
-                console.log('response :>> ', response);
+                // console.log('response :>> ', response);
                 const movieData: FetchMoviesResponse = response;
                 // const movies = useSelector((state: RootState) => state.movies.movies);
                 setMovies([...movieData.results]);
@@ -64,6 +64,12 @@ export const moviesApi = createApi({
                 return `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=${year}&sort_by=popularity.desc&with_genres=${genreIds}`;
             },
         }),
+        fetchTredingMovies: builder.query<FetchMoviesResponse, string>({
+            query: (period) => `/trending/all/${period}?language=en-US`,
+        }),
+        fetchTheatersMovies: builder.query<FetchMoviesResponse, string>({
+            query: (period) => `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_date.gte=${period}`,
+        }),
     }),
 });
 
@@ -74,4 +80,6 @@ export const {
     useFetchCharactersQuery,
     useFetchGenresQuery,
     useFetchFilterMoviesQuery,
+    useFetchTredingMoviesQuery,
+    useFetchTheatersMoviesQuery,
 } = moviesApi;

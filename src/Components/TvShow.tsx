@@ -19,7 +19,7 @@ const TvShow = ({ tvshow, index }: TvShowProps) => {
       boxShadow: '0 2px 8px rgba(0,0,0,.1)',
     //   flexgrow: 3
     }}>
-      <Link to={`/tvshows/tvShowDetails/${tvshow.id}`}>
+      <Link style={{textDecoration: 'none'}} to={`/tvshows/tvShowDetails/${tvshow.id}`}>
         <img style={{
           width: '180px',
           height: '270px'

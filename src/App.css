@@ -6,3 +6,36 @@
   margin: 0px;
 
 }
+
+/* .app-background {
+  background-image: 
+  linear-gradient(
+      rgba(0, 0, 0, 0.7), 
+      rgba(0, 0, 0, 0.7)
+    ), 
+  url("/public/movie-background-collage.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 100vh;
+} */
+
+
+.background-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Full screen height */
+  background-image: linear-gradient(to bottom, rgb(246 246 246 / 0%), rgb(199 199 200 / 70%)); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Optional: Add a fade-in effect to the background */
+.background-container.fade-in {
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

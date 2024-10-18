@@ -2,6 +2,7 @@ import React, {  } from 'react'
 import { useParams } from 'react-router-dom';
 import { useFetchMvieDetailsQuery } from '../services/moviesApi';
 import MovieCharacter from '../Components/MovieCharacter';
+import RatingCircle from '../Components/RatingCircle';
 
 
 const MovieDetails: React.FC = () => {
@@ -9,11 +10,11 @@ const MovieDetails: React.FC = () => {
     const { id } = useParams();
     const { data, error, isLoading } = useFetchMvieDetailsQuery(Number(id));
     const movieDetails = data;
-
+    // backgroundImage: "url(/movie-background-collage.jpg)",
     return (
         <div
             style={{
-                width: "100%", backgroundImage: "url(/movie-background-collage.jpg)",
+                width: "100%", backgroundImage: `url(${`https://image.tmdb.org/t/p/w500${movieDetails?.backdrop_path}`})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: '100% 100%',
                 minHeight: '100vh',
@@ -28,7 +29,7 @@ const MovieDetails: React.FC = () => {
                         width: '80%',
                         margin: 'auto',
                         padding: '30px 40px',
-                        background: `linear-gradient(90deg, rgb(232 232 232) 10%, rgba(117, 0, 9, 0) 130%), url(${`https://image.tmdb.org/t/p/w500${movieDetails?.backdrop_path}`})`,
+                        background: `linear-gradient(90deg, rgb(232 232 232) 10%, rgba(117, 0, 9, 0) 130%), url(${`https://image.tmdb.org/t/p/w780${movieDetails?.backdrop_path}`})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: '100% 100%',
                     }}>
@@ -50,19 +51,8 @@ const MovieDetails: React.FC = () => {
                                 {movieDetails.genres.map((genre, idx) => <span style={{ marginRight: 5 }}>{`${genre.name}, `} </span>)}
                             </div>
                             <div style={{ display: 'flex' }}>
-                                <div style={{
-                                    display: 'flex',
-                                    border: '1px solid black',
-                                    color: 'white',
-                                    backgroundColor: 'black',
-                                    borderRadius: '50px',
-                                    width: '35px',
-                                    height: '35px',
-                                    fontSize: '20px',
-                                    margin: '15px 0px 15px'
-                                }}
+                            <RatingCircle vote_average={movieDetails.vote_average} />
 
-                                ><p style={{ margin: 'auto' }}>{Number(movieDetails.vote_average.toFixed(1)) * 10}</p></div>
                                 <div style={{
                                     display: 'flex',
                                     alignItems: 'center',

@@ -5,14 +5,15 @@ import { Sidebar } from '../Components/Sidbar';
 import './Pages.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { selectError, selectIsLoading, selectMovies, setError, setLoading, setMovies, setPage } from '../features/movies/moviesSlice';
+import { selectMovies, setError, setLoading, setMovies, setPage } from '../features/movies/moviesSlice';
 import { useFetchMoviesQuery } from '../services/moviesApi';
+import Search from '../Components/Search';
 
 interface FetchMoviesResponse {
     results: MovieInterface[];
 }
 
- const Movies: React.FC = () => {
+const Movies: React.FC = () => {
 
     const dispatch = useDispatch();
     const page = useSelector((state: RootState) => state.movies.page);
@@ -27,9 +28,8 @@ interface FetchMoviesResponse {
                     throw new Error('Failed to fetch movies.');
                 }
                 if (data) {
-                    console.log('data', data)
                     const movieData: FetchMoviesResponse = data as FetchMoviesResponse;
-                    dispatch(setMovies([...movies,...movieData.results]));
+                    dispatch(setMovies([...movies, ...movieData.results]));
                     dispatch(setError(null));
                 } else {
                     throw new Error('No data.');
@@ -47,20 +47,24 @@ interface FetchMoviesResponse {
     const handelPage = () => {
         dispatch(setPage(page + 1));
     }
-    
+
 
     return (
         <div>
-            <div style={{ display: 'flex', width: '100%', margin: 'auto' }}>
+            <div className='autocomplete'>
+                <Search />
+            </div>
+            <div style={{
+                display: 'flex', width: '100%', margin: 'auto'
+            }}>
                 <div style={{ width: '20%' }}>
-                    <div className='autocomplete'>
-                        {/* <Search /> */}
-                    </div>
+
                     <Sidebar />
                 </div>
 
                 <div style={{ width: '80%' }}>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', flexWrap: 'wrap', margin: 'auto' }}>
+
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', flexWrap: 'wrap', margin: '0px 50px' }}>
                         {
                             movies?.map((movie, index) =>
 
@@ -68,13 +72,13 @@ interface FetchMoviesResponse {
                             )
                         }
                     </div>
-                    <div style={{ textAlign: 'center' }}>
 
-                        <button onClick={handelPage} >Load More</button>
-                    </div>
+
+                    <button className='loadmore-btn' onClick={handelPage} >Load More</button>
+
                 </div>
             </div>
-            
+
         </div>
     )
 }

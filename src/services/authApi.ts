@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
+import { get } from 'http';
 
 interface SignUpResponse {
   email: string;
@@ -22,10 +23,18 @@ interface SignInRequest {
   password: string;
 }
 
+interface UserResponse {
+  id: string;
+  email: string;
+  name: string;
+}
+
 const baseQuery = fetchBaseQuery({
   baseUrl: '/api',
   prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).user.token;
+    // const token = (getState() as RootState).user.token;
+    const token = localStorage.getItem('token');
+    // console.log('token :>> ', localStorage.getItem('token'));
     if (token) {
       headers.set('authorization', `Bearer ${token}`);
     }
@@ -51,7 +60,10 @@ export const authApi = createApi({
         body: credentials,
       }),
     }),
+    getUser: builder.query<UserResponse, void>({ // Add this endpoint
+      query: () => 'http://localhost:5000/api/users/user',
+    }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation } = authApi;
+export const { useSignUpMutation, useSignInMutation, useGetUserQuery } = authApi;

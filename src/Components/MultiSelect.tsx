@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import Box from '@mui/joy/Box';
 import Checkbox from '@mui/joy/Checkbox';
 import Chip from '@mui/joy/Chip';

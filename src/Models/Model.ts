@@ -132,6 +132,12 @@ export interface FetchCharactersResponse {
     cast: Character[];
 }
 
+export interface FetchUserResponse {
+    id: string;
+    email: string;
+    name: string;
+}
+
 
 
 // export interface MovieResponse {
